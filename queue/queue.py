@@ -17,8 +17,7 @@ import sys
 sys.path.append('singly_linked_list/')
 from singly_linked_list import LinkedList, Node
 
-sys.path.append('stack/')
-from stack import IsEmptyError
+sys.path.append('queue/')
 
 class Queue:
     
@@ -58,7 +57,8 @@ class Queue:
 
     def dequeue(self):
         if self.is_empty():
-            raise IsEmptyError("This queue is empty, can't dequeue")
+            return None
+            #raise IsEmptyError("This queue is empty, can't dequeue")
         result = self.head.value
         self.head = self.head.next_node
         self.size -=1
@@ -69,7 +69,8 @@ class Queue:
 
     def peek(self):
         if self.is_empty():
-            raise IsEmptyError('Nothing in the queue')
+            return None
+            #raise IsEmptyError('Nothing in the queue')
         return self.head.value
 
 q = Queue()

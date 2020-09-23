@@ -35,6 +35,7 @@ class Stack:
 
     def __init__(self):
         self.size = 0
+        self.storage = LinkedList()
         self.head = None
 
     def __len__(self):
@@ -49,7 +50,7 @@ class Stack:
 
     def pop(self):
         if self.is_empty():
-            return self.size == 0
+            return None
             # IsEmptyError(" Sorry no element here, nothing to pop")
         result = self.head.value
         self.head = self.head.next_node
@@ -58,15 +59,16 @@ class Stack:
 
     def peek(self):
         if self.is_empty():
-            raise IsEmptyError('Nothing to peek')
+            return None
+            #raise IsEmptyError('Nothing to peek')
         return self.head
         
 
 #stack =Stack()
 #stack.push(2)
 #stack.push(70)
-##stack.push(4)
+#stack.push(4)
 #stack.pop()
-##print(len(stack))
+#print(len(stack))
 #print(stack.peek())
 
