@@ -18,29 +18,71 @@ class BSTNode:
     # Insert the given value into the tree
     def insert(self, value):
         # if value is less than value of parent, if new node's value is less than the current node's value
-            # if there is no left child already here    
+        if value < self.value:
+            # if there is no left child already here
+            if not self.left:    
                 # add the new node to the left
+                self.left = BSTNode(value)
             # otherwise call insert on the left node
-        # otherwise the new node's value is greater than or equal to
-            # if there is no right child already here    
+            else:
+                # otherwise the new node's value is greater than or equal to
+                self.left.insert(value)
+        # if there is no right child already here  
+        else:
+            if not self.right:  
                 # add the new node to the right
+                self.right = BSTNode(value)
             # otherwise call insert on the right node
-        pass
+            else:
+                self.right.insert(value)
+        
                 
 
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        if self.value == target:
+            return True
+        
+        if target < self.value:
+            if self.left is None:
+                return False
+            else:
+                self.left.contains(target)
+        else:
+            if self.right is None:
+                return False
+            else:
+                self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        # Check if the tree has no node, then no max value
+        if not self:
+            return None
+        # max must be on the right side
+        while self.right:
+            self = self.right
+        return self.value
 
     # Call the function `fn` on the value of each node
     def for_each(self, fn):
-        pass
+        fn(self.value)
+
+        if self.left:
+            self.left.for_each(fn)
+
+        if self.right:
+            self.right.for_each(fn)
+
+    def get_min(self):
+        if not self:
+            return None
+        while self.left:
+            self = self.left
+        return self.value
+        
 
     # Part 2 -----------------------
 
@@ -90,6 +132,6 @@ print("elegant methods")
 print("pre order")
 bst.pre_order_dft()
 print("in order")
-bst.in_order_dft()
+bst.in_order_print()
 print("post order")
 bst.post_order_dft()  
